@@ -433,29 +433,81 @@ private void cargarLicoresPorTipo(String tipo) {
     }//GEN-LAST:event_cbLicorNombreActionPerformed
 
     private void btnGenerarpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarpedidoActionPerformed
-        if (idPedido == null) {
-        generarNuevoPedido(); // Generar el pedido solo cuando sea necesario
-    }
 
     try (Connection con = ConexionBD.conectar()) {
-        // Insertar cada fila en detalle_pedido
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            String nombre = (String) modelo.getValueAt(i, 1);
+            int cantidadSolicitada = Integer.parseInt(String.valueOf(modelo.getValueAt(i, 2)));
+
+            // Verificar si hay suficiente stock
+            try (PreparedStatement psStock = con.prepareStatement(
+                 "SELECT cantidad FROM licores WHERE nombre = ?")) {
+                psStock.setString(1, nombre);
+                ResultSet rs = psStock.executeQuery();
+                if (rs.next()) {
+                    int cantidadDisponible = rs.getInt("cantidad");
+                    if (cantidadSolicitada > cantidadDisponible) {
+                        JOptionPane.showMessageDialog(this,
+                                "No hay suficiente stock para el licor: " + nombre +
+                                ". Stock disponible: " + cantidadDisponible,
+                                "Stock insuficiente",
+                                JOptionPane.ERROR_MESSAGE);
+                        return; // Cancelar todo el proceso si no hay stock suficiente
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "El licor seleccionado no existe en la base de datos.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return; // Cancelar todo el proceso si no se encuentra el licor
+                }
+            }
+        }
+
+        // Generar un nuevo pedido solo si la validación de stock fue exitosa
+        if (idPedido == null) {
+            generarNuevoPedido();
+        }
+
+        // Insertar detalles del pedido y actualizar stock
         for (int i = 0; i < modelo.getRowCount(); i++) {
             String tipo = (String) modelo.getValueAt(i, 0);
             String nombre = (String) modelo.getValueAt(i, 1);
-            int cantidad = Integer.parseInt(String.valueOf(modelo.getValueAt(i, 2)));
+            int cantidadSolicitada = Integer.parseInt(String.valueOf(modelo.getValueAt(i, 2)));
             double precio = Double.parseDouble(String.valueOf(modelo.getValueAt(i, 3)));
             double total = Double.parseDouble(String.valueOf(modelo.getValueAt(i, 4)));
 
-            try (PreparedStatement ps = con.prepareStatement(
-                 "INSERT INTO detalle_pedido (id_pedido, tipo, nombre, cantidad, precio_unitario, total) " +
-                 "VALUES (?, ?, ?, ?, ?, ?)")) {
-                ps.setInt(1, idPedido);
-                ps.setString(2, tipo);
-                ps.setString(3, nombre);
-                ps.setInt(4, cantidad);
-                ps.setDouble(5, precio);
-                ps.setDouble(6, total);
-                ps.executeUpdate();
+            // Obtener el ID del licor
+            int idLicor = -1;
+            try (PreparedStatement psId = con.prepareStatement(
+                 "SELECT id FROM licores WHERE nombre = ?")) {
+                psId.setString(1, nombre);
+                ResultSet rs = psId.executeQuery();
+                if (rs.next()) {
+                    idLicor = rs.getInt("id");
+                }
+            }
+
+            // Insertar detalle del pedido
+            try (PreparedStatement psDetalle = con.prepareStatement(
+                 "INSERT INTO detalle_pedido (id_pedido, id_licor, tipo, nombre, cantidad, precio_unitario, total) " +
+                 "VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                psDetalle.setInt(1, idPedido);
+                psDetalle.setInt(2, idLicor);
+                psDetalle.setString(3, tipo);
+                psDetalle.setString(4, nombre);
+                psDetalle.setInt(5, cantidadSolicitada);
+                psDetalle.setDouble(6, precio);
+                psDetalle.setDouble(7, total);
+                psDetalle.executeUpdate();
+            }
+
+            // Actualizar el stock
+            try (PreparedStatement psUpdateStock = con.prepareStatement(
+                 "UPDATE licores SET cantidad = cantidad - ? WHERE id = ?")) {
+                psUpdateStock.setInt(1, cantidadSolicitada);
+                psUpdateStock.setInt(2, idLicor);
+                psUpdateStock.executeUpdate();
             }
         }
 
@@ -469,9 +521,9 @@ private void cargarLicoresPorTipo(String tipo) {
 
         JOptionPane.showMessageDialog(this, "Pedido generado correctamente con ID: " + idPedido);
 
-        // Limpiar tabla y reiniciar el pedido
+        // Limpiar la tabla y reiniciar el pedido
         modelo.setRowCount(0);
-        idPedido = null; // Reiniciar ID para permitir generar un nuevo pedido
+        idPedido = null; // Reiniciar el ID para permitir generar un nuevo pedido
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error al generar pedido: " + e.getMessage());
     }
