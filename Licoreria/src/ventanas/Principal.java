@@ -24,6 +24,9 @@ public class Principal extends javax.swing.JFrame {
     this.modelo.addColumn("Precio Unitario");
     this.modelo.addColumn("Total a Pagar");
     
+    cbLicorigv.addItem("Sí");
+    cbLicorigv.addItem("No");
+    
 
 
     cargarTiposLicor(); // Llama a cargar los tipos después de inicializar el UI
@@ -57,11 +60,13 @@ public class Principal extends javax.swing.JFrame {
         cbLicorCombo = new javax.swing.JComboBox<>();
         btnLimpiarTabla = new javax.swing.JButton();
         btnQuitarCompra = new javax.swing.JButton();
+        jLabelMarcaCombo1 = new javax.swing.JLabel();
         btnNetoPagar = new javax.swing.JButton();
         btnGenerarpedido = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNetoPagar = new javax.swing.JTextField();
         cbLicorNombre = new javax.swing.JComboBox<>();
+        cbLicorigv = new javax.swing.JComboBox<>();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -146,7 +151,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btnSalir)
                     .addComponent(btnListaPrecios)
                     .addComponent(btnVentas))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 670));
@@ -154,24 +159,24 @@ public class Principal extends javax.swing.JFrame {
         jLabelTipoLicorCombo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelTipoLicorCombo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTipoLicorCombo.setText("TIPO DE LICOR O COMBO");
-        getContentPane().add(jLabelTipoLicorCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, -1));
+        getContentPane().add(jLabelTipoLicorCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jLabelMarcaCombo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelMarcaCombo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelMarcaCombo.setText("Nombre");
-        getContentPane().add(jLabelMarcaCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, -1, -1));
+        getContentPane().add(jLabelMarcaCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, -1, -1));
 
         jLabelCantidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelCantidad.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCantidad.setText("CANTIDAD");
-        getContentPane().add(jLabelCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 40, -1, -1));
+        getContentPane().add(jLabelCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 70, -1, -1));
 
         jLabelPrecio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelPrecio.setForeground(new java.awt.Color(255, 255, 255));
         jLabelPrecio.setText("PRECIO");
-        getContentPane().add(jLabelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 40, -1, -1));
-        getContentPane().add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 80, 100, -1));
-        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 80, 100, -1));
+        getContentPane().add(jLabelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 70, -1, -1));
+        getContentPane().add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 100, -1));
+        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 90, 100, -1));
 
         btnLimpiar.setBackground(new java.awt.Color(0, 0, 102));
         btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -229,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
                 cbLicorComboActionPerformed(evt);
             }
         });
-        getContentPane().add(cbLicorCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 130, 30));
+        getContentPane().add(cbLicorCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 130, 30));
 
         btnLimpiarTabla.setBackground(new java.awt.Color(0, 0, 102));
         btnLimpiarTabla.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -252,6 +257,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnQuitarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 630, 80, -1));
+
+        jLabelMarcaCombo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelMarcaCombo1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMarcaCombo1.setText("igv");
+        getContentPane().add(jLabelMarcaCombo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, -1, 20));
 
         btnNetoPagar.setBackground(new java.awt.Color(0, 0, 102));
         btnNetoPagar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -294,7 +304,15 @@ public class Principal extends javax.swing.JFrame {
                 cbLicorNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(cbLicorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 70, 130, 30));
+        getContentPane().add(cbLicorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 130, 30));
+
+        cbLicorigv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbLicorigv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLicorigvActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbLicorigv, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 70, 30));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fonfo azul hd.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 670));
@@ -389,22 +407,27 @@ private void cargarLicoresPorTipo(String tipo) {
     }//GEN-LAST:event_btnQuitarCompraActionPerformed
 
     private void btnNetoPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNetoPagarActionPerformed
-        // TODO add your handling code here:
-        double sumatoria;
-        double sumatorial=0;
-        int totalRow=TableDetalles.getRowCount();
-        double netoIGV;
-        totalRow-=1;
-        for(int i =0; i<=(totalRow);i++){
-            sumatoria=Double.parseDouble(String.valueOf(TableDetalles.getValueAt(i,4)));
-            sumatorial+=sumatoria;
-        }
-        netoIGV=sumatorial*(1+IGV);
-        DecimalFormat df=new DecimalFormat("##.##");
-        txtNetoPagar.setText(df.format(netoIGV));
-        
-        netoPagarCont++;
-        netoPagarAcumul+=netoIGV;
+                                         
+    double sumatoria;
+    double sumatorial = 0;
+    int totalRow = TableDetalles.getRowCount();
+    boolean incluirIGV = cbLicorigv.getSelectedItem() != null && cbLicorigv.getSelectedItem().toString().equalsIgnoreCase("Sí"); // Verifica si se incluye IGV
+
+    totalRow -= 1;
+    for (int i = 0; i <= totalRow; i++) {
+        sumatoria = Double.parseDouble(String.valueOf(TableDetalles.getValueAt(i, 4)));
+        sumatorial += sumatoria;
+    }
+
+    // Calcula el total con o sin IGV
+    double neto = incluirIGV ? sumatorial * (1 + IGV) : sumatorial;
+
+    DecimalFormat df = new DecimalFormat("##.##");
+    txtNetoPagar.setText(df.format(neto));
+
+    netoPagarCont++;
+    netoPagarAcumul += neto;
+
     }//GEN-LAST:event_btnNetoPagarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -455,13 +478,16 @@ private void cargarLicoresPorTipo(String tipo) {
     private void btnGenerarpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarpedidoActionPerformed
 
     try (Connection con = ConexionBD.conectar()) {
+        double totalPedido = 0; // Variable para acumular el total del pedido (con o sin IGV)
+
+        // Validación de stock de licores
         for (int i = 0; i < modelo.getRowCount(); i++) {
             String nombre = (String) modelo.getValueAt(i, 1);
             int cantidadSolicitada = Integer.parseInt(String.valueOf(modelo.getValueAt(i, 2)));
 
             // Verificar si hay suficiente stock
             try (PreparedStatement psStock = con.prepareStatement(
-                 "SELECT cantidad FROM licores WHERE nombre = ?")) {
+                    "SELECT cantidad FROM licores WHERE nombre = ?")) {
                 psStock.setString(1, nombre);
                 ResultSet rs = psStock.executeQuery();
                 if (rs.next()) {
@@ -497,10 +523,16 @@ private void cargarLicoresPorTipo(String tipo) {
             double precio = Double.parseDouble(String.valueOf(modelo.getValueAt(i, 3)));
             double total = Double.parseDouble(String.valueOf(modelo.getValueAt(i, 4)));
 
+            // Verifica si se debe aplicar IGV
+            boolean incluirIGV = cbLicorigv.getSelectedItem() != null && cbLicorigv.getSelectedItem().toString().equalsIgnoreCase("Sí");
+            if (incluirIGV) {
+                total = total * (1 + IGV); // Aplica IGV al total
+            }
+
             // Obtener el ID del licor
             int idLicor = -1;
             try (PreparedStatement psId = con.prepareStatement(
-                 "SELECT id FROM licores WHERE nombre = ?")) {
+                    "SELECT id FROM licores WHERE nombre = ?")) {
                 psId.setString(1, nombre);
                 ResultSet rs = psId.executeQuery();
                 if (rs.next()) {
@@ -510,8 +542,8 @@ private void cargarLicoresPorTipo(String tipo) {
 
             // Insertar detalle del pedido
             try (PreparedStatement psDetalle = con.prepareStatement(
-                 "INSERT INTO detalle_pedido (id_pedido, id_licor, tipo, nombre, cantidad, precio_unitario, total) " +
-                 "VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                    "INSERT INTO detalle_pedido (id_pedido, id_licor, tipo, nombre, cantidad, precio_unitario, total) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)")) {
                 psDetalle.setInt(1, idPedido);
                 psDetalle.setInt(2, idLicor);
                 psDetalle.setString(3, tipo);
@@ -524,17 +556,20 @@ private void cargarLicoresPorTipo(String tipo) {
 
             // Actualizar el stock
             try (PreparedStatement psUpdateStock = con.prepareStatement(
-                 "UPDATE licores SET cantidad = cantidad - ? WHERE id = ?")) {
+                    "UPDATE licores SET cantidad = cantidad - ? WHERE id = ?")) {
                 psUpdateStock.setInt(1, cantidadSolicitada);
                 psUpdateStock.setInt(2, idLicor);
                 psUpdateStock.executeUpdate();
             }
+
+            // Acumula el total del pedido (con o sin IGV)
+            totalPedido += total;
         }
 
-        // Actualizar el total del pedido
+        // Actualizar el total del pedido (con IGV si corresponde)
         try (PreparedStatement ps = con.prepareStatement(
-             "UPDATE pedido SET total = (SELECT SUM(total) FROM detalle_pedido WHERE id_pedido = ?) WHERE id_pedido = ?")) {
-            ps.setInt(1, idPedido);
+                "UPDATE pedido SET total = ? WHERE id_pedido = ?")) {
+            ps.setDouble(1, totalPedido);
             ps.setInt(2, idPedido);
             ps.executeUpdate();
         }
@@ -567,6 +602,13 @@ String tipoSeleccionado = (String) cbLicorCombo.getSelectedItem();
     this.dispose();
     }//GEN-LAST:event_btnadministrarActionPerformed
 
+    private void cbLicorigvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLicorigvActionPerformed
+        String seleccion = (String) cbLicorigv.getSelectedItem();
+    if (seleccion != null) {
+        JOptionPane.showMessageDialog(this, "Opción seleccionada para IGV: " + seleccion, "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_cbLicorigvActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -583,12 +625,14 @@ String tipoSeleccionado = (String) cbLicorCombo.getSelectedItem();
     private javax.swing.JButton btnagregartabla;
     private javax.swing.JComboBox<String> cbLicorCombo;
     private javax.swing.JComboBox<String> cbLicorNombre;
+    private javax.swing.JComboBox<String> cbLicorigv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelMarcaCombo;
+    private javax.swing.JLabel jLabelMarcaCombo1;
     private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelTipoLicorCombo;
     private javax.swing.JLabel jLabelTotalPagar;

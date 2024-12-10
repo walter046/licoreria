@@ -95,7 +95,6 @@ public class Gestionarlicores extends javax.swing.JFrame {
         txtpaisorigen = new javax.swing.JTextField();
         txtcantidadlico = new javax.swing.JTextField();
         txtNombrelico = new javax.swing.JTextField();
-        jbtnIGV = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -150,10 +149,6 @@ public class Gestionarlicores extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtNombrelico, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 250, 60));
-
-        jbtnIGV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar el IGV", "18%" }));
-        jbtnIGV.setBorder(javax.swing.BorderFactory.createTitledBorder("IGV"));
-        jPanel1.add(jbtnIGV, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 110, 60));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -471,7 +466,6 @@ public class Gestionarlicores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JComboBox<String> jbtnIGV;
     public javax.swing.JTable tbllicores;
     public javax.swing.JTextField txtCodigolico;
     public javax.swing.JTextArea txtDescripcion;
