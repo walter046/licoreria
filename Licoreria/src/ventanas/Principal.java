@@ -14,7 +14,6 @@ public class Principal extends javax.swing.JFrame {
    private Integer idPedido = null;
     private final double IGV = 0.18;
     
-    
     public Principal() {
         initComponents(); // Esto debe ir primero para inicializar el UI
     this.setLocationRelativeTo(null);
@@ -24,10 +23,13 @@ public class Principal extends javax.swing.JFrame {
     this.modelo.addColumn("Cantidad");
     this.modelo.addColumn("Precio Unitario");
     this.modelo.addColumn("Total a Pagar");
+    
+
 
     cargarTiposLicor(); // Llama a cargar los tipos después de inicializar el UI
     // Genera un pedido nuevo
     }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,6 +41,7 @@ public class Principal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnListaPrecios = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
+        btnadministrar = new javax.swing.JButton();
         jLabelTipoLicorCombo = new javax.swing.JLabel();
         jLabelMarcaCombo = new javax.swing.JLabel();
         jLabelCantidad = new javax.swing.JLabel();
@@ -94,6 +97,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnadministrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnadministrar.setText("administrar");
+        btnadministrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadministrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,11 +127,17 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addComponent(btnListaPrecios)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnadministrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(btnadministrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLogo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,7 +146,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btnSalir)
                     .addComponent(btnListaPrecios)
                     .addComponent(btnVentas))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 670));
@@ -290,6 +307,8 @@ public class Principal extends javax.swing.JFrame {
     private double precio;
     private double total;
     
+
+    
     
     private void generarNuevoPedido() {
         try (Connection con = ConexionBD.conectar();
@@ -394,7 +413,8 @@ private void cargarLicoresPorTipo(String tipo) {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnListaPreciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPreciosActionPerformed
-        
+        listaprecios listaprecios = new listaprecios();
+    listaprecios.setVisible(true);
     }//GEN-LAST:event_btnListaPreciosActionPerformed
 
     private void txtTotalPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarActionPerformed
@@ -536,40 +556,18 @@ String tipoSeleccionado = (String) cbLicorCombo.getSelectedItem();
     }
     }//GEN-LAST:event_cbLicorComboActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnadministrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadministrarActionPerformed
+        // Crear instancia del formulario GestionarLicores
+    Gestionarlicores gestionarLicores = new Gestionarlicores();
+    
+    // Hacer visible el formulario GestionarLicores
+    gestionarLicores.setVisible(true);
+    
+    // Cerrar la ventana actual
+    this.dispose();
+    }//GEN-LAST:event_btnadministrarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableDetalles;
@@ -581,6 +579,7 @@ String tipoSeleccionado = (String) cbLicorCombo.getSelectedItem();
     private javax.swing.JButton btnQuitarCompra;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton btnadministrar;
     private javax.swing.JButton btnagregartabla;
     private javax.swing.JComboBox<String> cbLicorCombo;
     private javax.swing.JComboBox<String> cbLicorNombre;

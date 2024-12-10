@@ -21,6 +21,7 @@ public class Gestionarlicores extends javax.swing.JFrame {
         configurarTabla();
          inicializarFecha();  // Mostrar la fecha actual en el campo txtFechadeingreso
     inicializarID();
+    this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     
     }
 
@@ -111,7 +112,7 @@ public class Gestionarlicores extends javax.swing.JFrame {
         btnactualizarlicor1 = new javax.swing.JButton();
         btnAgregarlico1 = new javax.swing.JButton();
         txtMarca = new javax.swing.JTextField();
-        btnreporteslicor1 = new javax.swing.JButton();
+        btnregresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -166,7 +167,7 @@ public class Gestionarlicores extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id_licores", "tipo", "nombre", "marca", "cantidad", "precio", "pais_origen", "fecha", "descripcion"
+                "id_licores", "nombre", "tipo", "marca", "cantidad", "precio", "pais_origen", "fecha", "descripcion"
             }
         ));
         jScrollPane1.setViewportView(tbllicores);
@@ -252,8 +253,13 @@ public class Gestionarlicores extends javax.swing.JFrame {
         });
         jPanel1.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 110, 60));
 
-        btnreporteslicor1.setText("REPORTE");
-        jPanel1.add(btnreporteslicor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 150, 50));
+        btnregresar.setText("REGRESAR");
+        btnregresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnregresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 150, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 760));
 
@@ -440,47 +446,25 @@ public class Gestionarlicores extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btneliminarlicorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gestionarlicores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gestionarlicores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gestionarlicores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gestionarlicores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresarActionPerformed
+        // Crear una instancia de la ventana Principal
+    Principal ventanaPrincipal = new Principal();
+    
+    // Hacer visible la ventana Principal
+    ventanaPrincipal.setVisible(true);
+    
+    // Cerrar la ventana actual
+    this.dispose();
+    }//GEN-LAST:event_btnregresarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Gestionarlicores().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgregarlico1;
     public javax.swing.JButton btnactualizarlicor1;
     public javax.swing.JButton btnbuscarlicor;
     public javax.swing.JButton btneliminarlicor;
-    public javax.swing.JButton btnreporteslicor1;
+    public javax.swing.JButton btnregresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
