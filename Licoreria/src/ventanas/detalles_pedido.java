@@ -14,6 +14,7 @@ public class detalles_pedido extends javax.swing.JFrame {
     public detalles_pedido() {
         initComponents();
         cargarLicores();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")

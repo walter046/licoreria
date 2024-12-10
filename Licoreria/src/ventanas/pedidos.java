@@ -14,7 +14,10 @@ public class pedidos extends javax.swing.JFrame {
     public pedidos() {
         initComponents();
         cargarLicores();
+    this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     
+    
+        
     }
 
     private void cargarLicores() {
@@ -47,6 +50,7 @@ public class pedidos extends javax.swing.JFrame {
         tbllicores = new javax.swing.JTable();
         txtbuscarid = new javax.swing.JTextField();
         btnbuscarpedido = new javax.swing.JButton();
+        btnListaDetallespedidos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,6 +93,15 @@ public class pedidos extends javax.swing.JFrame {
         });
         jPanel5.add(btnbuscarpedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 30, 150, 50));
 
+        btnListaDetallespedidos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnListaDetallespedidos.setText("LISTA DE DETALLES");
+        btnListaDetallespedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaDetallespedidosActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnListaDetallespedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 190, 50));
+
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1060, 500));
 
         pack();
@@ -120,9 +133,15 @@ public class pedidos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnbuscarpedidoActionPerformed
 
+    private void btnListaDetallespedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaDetallespedidosActionPerformed
+        detalles_pedido detalles_pedido = new detalles_pedido();
+        detalles_pedido.setVisible(true);
+    }//GEN-LAST:event_btnListaDetallespedidosActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnListaDetallespedidos;
     public javax.swing.JButton btnbuscarpedido;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
